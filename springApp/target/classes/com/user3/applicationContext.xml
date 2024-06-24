@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xsi:schemaLocation="http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+		
+		<!-- bean 태그 : 스프링 컨테이너에 빈을 등록(객체를 생성해서 저장) -->
+		
+		<!-- 프로퍼티 값 설정 -->
+		<!--  
+		<bean id="userService" class="com.user3.UserServiceImpl">
+			<property  name="name" value="김자바"/>
+			<property  name="tel" value="010-2345-1292"/>
+			<property  name="score" value="95"/>
+		</bean>
+		-->
+		<!-- p 네임스페이스로 프로퍼티 값 설정 -->
+		<bean id="userService" class="com.user3.UserServiceImpl"
+			p:name="이이이" p:tel="010-1234-5678" p:score="85" />
+		
+		
+		<!-- 프로퍼티로 의존성 주입 -->
+		<!-- 반드시 setter가 있어야 한다. -->
+		<!--  
+		<bean id="user" class="com.user3.User">
+			<property name="userService" ref="userService"/>
+		</bean>
+		-->
+		<!-- p 네임스페이스로 의존성 주입 -->
+		<bean id="user" class="com.user3.User" 
+			p:userService-ref="userService"	/>
+</beans>

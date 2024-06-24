@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xsi:schemaLocation="http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+		
+		<!-- bean 태그 : 스프링 컨테이너에 빈을 등록(객체를 생성해서 저장) -->
+		
+		<!-- 인자가 있는 생성자로 빈 정의 -->
+		<!-- c 네임스페이스를 이용한 값 설정. 맨 아래 Namespaces 탭 선택해서 c를 체크한다. -->
+		<bean id="userService2" class="com.user2.UserServiceImpl2"
+				c:name="우헤헤" c:tel="010-0000-0001" c:age="19" />
+		<!-- c 네임스페이스를 이용하여 생성자로 의존성 주입 -->
+		<bean id="user2" class="com.user2.User2"
+			c:userService2-ref="userService2"/>
+			
+		<!-- 프로퍼티를 이용한 의존성 값 설정 -->
+		<!-- setter가 존재해야 함 -->
+		<bean id="userService" class="com.user2.UserServiceImpl">
+			<property name="name" value="후후후"/>
+			<property name="age" value="21"/>
+			<property name="tel" value="000-1111-3253"/>
+		</bean>
+		
+		<!-- 프로퍼티를 이용한 의존성 주입 -->
+		<!-- userService의 이름으로 setter가 존재해야 함 -->
+		<bean id="user" class="com.user2.User" init-method="init" destroy-method="destroy">
+			<property name="userService" ref="userService"/>
+		</bean>
+		
+	
+</beans>
